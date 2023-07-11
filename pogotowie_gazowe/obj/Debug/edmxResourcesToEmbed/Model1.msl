@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="pgModelStoreContainer" CdmEntityContainer="pgEntities1">
+    <EntitySetMapping Name="Awaria">
+      <EntityTypeMapping TypeName="pgModel.Awaria">
+        <MappingFragment StoreEntitySet="Awaria">
+          <ScalarProperty Name="Powód" ColumnName="Powód" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="Miejsce" ColumnName="Miejsce" />
+          <ScalarProperty Name="ID_Awarii" ColumnName="ID_Awarii" />
+          <ScalarProperty Name="ID_Pojazdu" ColumnName="ID_Pojazdu" />
+          <ScalarProperty Name="ID_Sprzetu" ColumnName="ID_Sprzetu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pojazd">
+      <EntityTypeMapping TypeName="pgModel.Pojazd">
+        <MappingFragment StoreEntitySet="Pojazd">
+          <ScalarProperty Name="Marka" ColumnName="Marka" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Data_zakupu" ColumnName="Data_zakupu" />
+          <ScalarProperty Name="Rocznik" ColumnName="Rocznik" />
+          <ScalarProperty Name="ID_Pojazdu" ColumnName="ID_Pojazdu" />
+          <ScalarProperty Name="ID_Pracownika" ColumnName="ID_Pracownika" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pracownik">
+      <EntityTypeMapping TypeName="pgModel.Pracownik">
+        <MappingFragment StoreEntitySet="Pracownik">
+          <ScalarProperty Name="ID_Pracownika" ColumnName="ID_Pracownika" />
+          <ScalarProperty Name="Imię" ColumnName="Imię" />
+          <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+          <ScalarProperty Name="Funkcja" ColumnName="Funkcja" />
+          <ScalarProperty Name="Szef" ColumnName="Szef" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sprzet">
+      <EntityTypeMapping TypeName="pgModel.Sprzet">
+        <MappingFragment StoreEntitySet="Sprzet">
+          <ScalarProperty Name="ID_Sprzetu" ColumnName="ID_Sprzetu" />
+          <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+          <ScalarProperty Name="Czy_uszkodzony" ColumnName="Czy_uszkodzony" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

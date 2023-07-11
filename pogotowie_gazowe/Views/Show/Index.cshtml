@@ -1,0 +1,59 @@
+﻿@model IEnumerable<pogotowie_gazowe.Pracownik>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Imię)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nazwisko)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Funkcja)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Szef)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Imię)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nazwisko)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Funkcja)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Szef)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ID_Pracownika }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ID_Pracownika }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ID_Pracownika })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

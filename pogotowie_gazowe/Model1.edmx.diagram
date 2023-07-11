@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="928f141f6dc44c3b8da9d4d67a3acec6" Name="Diagram1">
+        <EntityTypeShape EntityType="pgModel.Awaria" Width="1.5" PointX="5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="pgModel.Pojazd" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="pgModel.Pracownik" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="pgModel.Sprzet" Width="1.5" PointX="4.75" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="pgModel.FK_Awaria_Pojazd" ManuallyRouted="false" />
+        <AssociationConnector Association="pgModel.FK_Awaria_Sprzet" ManuallyRouted="false" />
+        <AssociationConnector Association="pgModel.FK_Pojazd_Pracownik" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

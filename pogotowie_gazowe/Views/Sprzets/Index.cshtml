@@ -1,0 +1,39 @@
+﻿@model IEnumerable<pogotowie_gazowe.Sprzet>
+
+@{
+    ViewBag.Title = "Sprzęty";
+}
+
+<h2>Sprzety</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nazwa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Czy_uszkodzony)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nazwa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Czy_uszkodzony)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Sprzetu }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_Sprzetu }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_Sprzetu })
+        </td>
+    </tr>
+}
+
+</table>

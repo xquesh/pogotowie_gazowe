@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="pgModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Awaria">
+    <Key>
+      <PropertyRef Name="ID_Awarii" />
+    </Key>
+    <Property Name="Powód" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Data" Type="date" Nullable="false" />
+    <Property Name="Miejsce" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ID_Awarii" Type="int" Nullable="false" />
+    <Property Name="ID_Pojazdu" Type="int" />
+    <Property Name="ID_Sprzetu" Type="int" />
+  </EntityType>
+  <EntityType Name="Pojazd">
+    <Key>
+      <PropertyRef Name="ID_Pojazdu" />
+    </Key>
+    <Property Name="Marka" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Model" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Data_zakupu" Type="date" Nullable="false" />
+    <Property Name="Rocznik" Type="int" Nullable="false" />
+    <Property Name="ID_Pojazdu" Type="int" Nullable="false" />
+    <Property Name="ID_Pracownika" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pracownik">
+    <Key>
+      <PropertyRef Name="ID_Pracownika" />
+    </Key>
+    <Property Name="ID_Pracownika" Type="int" Nullable="false" />
+    <Property Name="Imię" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nazwisko" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Funkcja" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Szef" Type="int" />
+  </EntityType>
+  <EntityType Name="Sprzet">
+    <Key>
+      <PropertyRef Name="ID_Sprzetu" />
+    </Key>
+    <Property Name="ID_Sprzetu" Type="int" Nullable="false" />
+    <Property Name="Nazwa" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Czy_uszkodzony" Type="varchar" MaxLength="3" />
+  </EntityType>
+  <Association Name="FK_Awaria_Pojazd">
+    <End Role="Pojazd" Type="Self.Pojazd" Multiplicity="0..1" />
+    <End Role="Awaria" Type="Self.Awaria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pojazd">
+        <PropertyRef Name="ID_Pojazdu" />
+      </Principal>
+      <Dependent Role="Awaria">
+        <PropertyRef Name="ID_Pojazdu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Awaria_Sprzet">
+    <End Role="Sprzet" Type="Self.Sprzet" Multiplicity="0..1" />
+    <End Role="Awaria" Type="Self.Awaria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sprzet">
+        <PropertyRef Name="ID_Sprzetu" />
+      </Principal>
+      <Dependent Role="Awaria">
+        <PropertyRef Name="ID_Sprzetu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pojazd_Pracownik">
+    <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
+    <End Role="Pojazd" Type="Self.Pojazd" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pracownik">
+        <PropertyRef Name="ID_Pracownika" />
+      </Principal>
+      <Dependent Role="Pojazd">
+        <PropertyRef Name="ID_Pracownika" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="pgModelStoreContainer">
+    <EntitySet Name="Awaria" EntityType="Self.Awaria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pojazd" EntityType="Self.Pojazd" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pracownik" EntityType="Self.Pracownik" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sprzet" EntityType="Self.Sprzet" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Awaria_Pojazd" Association="Self.FK_Awaria_Pojazd">
+      <End Role="Pojazd" EntitySet="Pojazd" />
+      <End Role="Awaria" EntitySet="Awaria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Awaria_Sprzet" Association="Self.FK_Awaria_Sprzet">
+      <End Role="Sprzet" EntitySet="Sprzet" />
+      <End Role="Awaria" EntitySet="Awaria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pojazd_Pracownik" Association="Self.FK_Pojazd_Pracownik">
+      <End Role="Pracownik" EntitySet="Pracownik" />
+      <End Role="Pojazd" EntitySet="Pojazd" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

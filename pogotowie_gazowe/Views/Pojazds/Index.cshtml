@@ -1,0 +1,52 @@
+﻿@model IEnumerable<pogotowie_gazowe.Pojazd>
+
+@{
+    ViewBag.Title = "Pojazdy";
+}
+
+<h2>Pojazdy</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Marka)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data_zakupu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rocznik)
+        </th>
+      
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Marka)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data_zakupu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rocznik)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID_Pojazdu }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID_Pojazdu }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID_Pojazdu })
+        </td>
+    </tr>
+}
+
+</table>

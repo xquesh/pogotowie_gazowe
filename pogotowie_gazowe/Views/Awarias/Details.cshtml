@@ -1,0 +1,66 @@
+﻿@model pogotowie_gazowe.Awaria
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Awaria</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Powód)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Powód)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Miejsce)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Miejsce)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_Awarii)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_Awarii)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_Pojazdu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_Pojazdu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_Sprzetu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_Sprzetu)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Awarii }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

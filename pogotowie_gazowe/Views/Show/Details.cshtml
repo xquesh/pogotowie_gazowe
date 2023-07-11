@@ -1,0 +1,58 @@
+﻿@model pogotowie_gazowe.Pracownik
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Pracownik</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Imię)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Imię)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Nazwisko)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Nazwisko)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Funkcja)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Funkcja)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Szef)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Szef)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Pracownika }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

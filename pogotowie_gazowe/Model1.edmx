@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="pgModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Awaria">
+          <Key>
+            <PropertyRef Name="ID_Awarii" />
+          </Key>
+          <Property Name="Powód" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Data" Type="date" Nullable="false" />
+          <Property Name="Miejsce" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_Awarii" Type="int" Nullable="false" />
+          <Property Name="ID_Pojazdu" Type="int" />
+          <Property Name="ID_Sprzetu" Type="int" />
+        </EntityType>
+        <EntityType Name="Pojazd">
+          <Key>
+            <PropertyRef Name="ID_Pojazdu" />
+          </Key>
+          <Property Name="Marka" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Model" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Data_zakupu" Type="date" Nullable="false" />
+          <Property Name="Rocznik" Type="int" Nullable="false" />
+          <Property Name="ID_Pojazdu" Type="int" Nullable="false" />
+          <Property Name="ID_Pracownika" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pracownik">
+          <Key>
+            <PropertyRef Name="ID_Pracownika" />
+          </Key>
+          <Property Name="ID_Pracownika" Type="int" Nullable="false" />
+          <Property Name="Imię" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nazwisko" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Funkcja" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Szef" Type="int" />
+        </EntityType>
+        <EntityType Name="Sprzet">
+          <Key>
+            <PropertyRef Name="ID_Sprzetu" />
+          </Key>
+          <Property Name="ID_Sprzetu" Type="int" Nullable="false" />
+          <Property Name="Nazwa" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Czy_uszkodzony" Type="varchar" MaxLength="3" />
+        </EntityType>
+        <Association Name="FK_Awaria_Pojazd">
+          <End Role="Pojazd" Type="Self.Pojazd" Multiplicity="0..1" />
+          <End Role="Awaria" Type="Self.Awaria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pojazd">
+              <PropertyRef Name="ID_Pojazdu" />
+            </Principal>
+            <Dependent Role="Awaria">
+              <PropertyRef Name="ID_Pojazdu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Awaria_Sprzet">
+          <End Role="Sprzet" Type="Self.Sprzet" Multiplicity="0..1" />
+          <End Role="Awaria" Type="Self.Awaria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sprzet">
+              <PropertyRef Name="ID_Sprzetu" />
+            </Principal>
+            <Dependent Role="Awaria">
+              <PropertyRef Name="ID_Sprzetu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pojazd_Pracownik">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
+          <End Role="Pojazd" Type="Self.Pojazd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="ID_Pracownika" />
+            </Principal>
+            <Dependent Role="Pojazd">
+              <PropertyRef Name="ID_Pracownika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="pgModelStoreContainer">
+          <EntitySet Name="Awaria" EntityType="Self.Awaria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pojazd" EntityType="Self.Pojazd" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pracownik" EntityType="Self.Pracownik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sprzet" EntityType="Self.Sprzet" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Awaria_Pojazd" Association="Self.FK_Awaria_Pojazd">
+            <End Role="Pojazd" EntitySet="Pojazd" />
+            <End Role="Awaria" EntitySet="Awaria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Awaria_Sprzet" Association="Self.FK_Awaria_Sprzet">
+            <End Role="Sprzet" EntitySet="Sprzet" />
+            <End Role="Awaria" EntitySet="Awaria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pojazd_Pracownik" Association="Self.FK_Pojazd_Pracownik">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="Pojazd" EntitySet="Pojazd" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="pgModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Awaria">
+          <Key>
+            <PropertyRef Name="ID_Awarii" />
+          </Key>
+          <Property Name="Powód" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Miejsce" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_Awarii" Type="Int32" Nullable="false" />
+          <Property Name="ID_Pojazdu" Type="Int32" />
+          <Property Name="ID_Sprzetu" Type="Int32" />
+          <NavigationProperty Name="Pojazd" Relationship="Self.FK_Awaria_Pojazd" FromRole="Awaria" ToRole="Pojazd" />
+          <NavigationProperty Name="Sprzet" Relationship="Self.FK_Awaria_Sprzet" FromRole="Awaria" ToRole="Sprzet" />
+        </EntityType>
+        <EntityType Name="Pojazd">
+          <Key>
+            <PropertyRef Name="ID_Pojazdu" />
+          </Key>
+          <Property Name="Marka" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Data_zakupu" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Rocznik" Type="Int32" Nullable="false" />
+          <Property Name="ID_Pojazdu" Type="Int32" Nullable="false" />
+          <Property Name="ID_Pracownika" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Awaria" Relationship="Self.FK_Awaria_Pojazd" FromRole="Pojazd" ToRole="Awaria" />
+          <NavigationProperty Name="Pracownik" Relationship="Self.FK_Pojazd_Pracownik" FromRole="Pojazd" ToRole="Pracownik" />
+        </EntityType>
+        <EntityType Name="Pracownik">
+          <Key>
+            <PropertyRef Name="ID_Pracownika" />
+          </Key>
+          <Property Name="ID_Pracownika" Type="Int32" Nullable="false" />
+          <Property Name="Imię" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Funkcja" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Szef" Type="Int32" />
+          <NavigationProperty Name="Pojazd" Relationship="Self.FK_Pojazd_Pracownik" FromRole="Pracownik" ToRole="Pojazd" />
+        </EntityType>
+        <EntityType Name="Sprzet">
+          <Key>
+            <PropertyRef Name="ID_Sprzetu" />
+          </Key>
+          <Property Name="ID_Sprzetu" Type="Int32" Nullable="false" />
+          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Czy_uszkodzony" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Awaria" Relationship="Self.FK_Awaria_Sprzet" FromRole="Sprzet" ToRole="Awaria" />
+        </EntityType>
+        <Association Name="FK_Awaria_Pojazd">
+          <End Role="Pojazd" Type="Self.Pojazd" Multiplicity="0..1" />
+          <End Role="Awaria" Type="Self.Awaria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pojazd">
+              <PropertyRef Name="ID_Pojazdu" />
+            </Principal>
+            <Dependent Role="Awaria">
+              <PropertyRef Name="ID_Pojazdu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Awaria_Sprzet">
+          <End Role="Sprzet" Type="Self.Sprzet" Multiplicity="0..1" />
+          <End Role="Awaria" Type="Self.Awaria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sprzet">
+              <PropertyRef Name="ID_Sprzetu" />
+            </Principal>
+            <Dependent Role="Awaria">
+              <PropertyRef Name="ID_Sprzetu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pojazd_Pracownik">
+          <End Role="Pracownik" Type="Self.Pracownik" Multiplicity="1" />
+          <End Role="Pojazd" Type="Self.Pojazd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pracownik">
+              <PropertyRef Name="ID_Pracownika" />
+            </Principal>
+            <Dependent Role="Pojazd">
+              <PropertyRef Name="ID_Pracownika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="pgEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Awaria" EntityType="Self.Awaria" />
+          <EntitySet Name="Pojazd" EntityType="Self.Pojazd" />
+          <EntitySet Name="Pracownik" EntityType="Self.Pracownik" />
+          <EntitySet Name="Sprzet" EntityType="Self.Sprzet" />
+          <AssociationSet Name="FK_Awaria_Pojazd" Association="Self.FK_Awaria_Pojazd">
+            <End Role="Pojazd" EntitySet="Pojazd" />
+            <End Role="Awaria" EntitySet="Awaria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Awaria_Sprzet" Association="Self.FK_Awaria_Sprzet">
+            <End Role="Sprzet" EntitySet="Sprzet" />
+            <End Role="Awaria" EntitySet="Awaria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pojazd_Pracownik" Association="Self.FK_Pojazd_Pracownik">
+            <End Role="Pracownik" EntitySet="Pracownik" />
+            <End Role="Pojazd" EntitySet="Pojazd" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="pgModelStoreContainer" CdmEntityContainer="pgEntities1">
+          <EntitySetMapping Name="Awaria">
+            <EntityTypeMapping TypeName="pgModel.Awaria">
+              <MappingFragment StoreEntitySet="Awaria">
+                <ScalarProperty Name="Powód" ColumnName="Powód" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Miejsce" ColumnName="Miejsce" />
+                <ScalarProperty Name="ID_Awarii" ColumnName="ID_Awarii" />
+                <ScalarProperty Name="ID_Pojazdu" ColumnName="ID_Pojazdu" />
+                <ScalarProperty Name="ID_Sprzetu" ColumnName="ID_Sprzetu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pojazd">
+            <EntityTypeMapping TypeName="pgModel.Pojazd">
+              <MappingFragment StoreEntitySet="Pojazd">
+                <ScalarProperty Name="Marka" ColumnName="Marka" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Data_zakupu" ColumnName="Data_zakupu" />
+                <ScalarProperty Name="Rocznik" ColumnName="Rocznik" />
+                <ScalarProperty Name="ID_Pojazdu" ColumnName="ID_Pojazdu" />
+                <ScalarProperty Name="ID_Pracownika" ColumnName="ID_Pracownika" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pracownik">
+            <EntityTypeMapping TypeName="pgModel.Pracownik">
+              <MappingFragment StoreEntitySet="Pracownik">
+                <ScalarProperty Name="ID_Pracownika" ColumnName="ID_Pracownika" />
+                <ScalarProperty Name="Imię" ColumnName="Imię" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="Funkcja" ColumnName="Funkcja" />
+                <ScalarProperty Name="Szef" ColumnName="Szef" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sprzet">
+            <EntityTypeMapping TypeName="pgModel.Sprzet">
+              <MappingFragment StoreEntitySet="Sprzet">
+                <ScalarProperty Name="ID_Sprzetu" ColumnName="ID_Sprzetu" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Czy_uszkodzony" ColumnName="Czy_uszkodzony" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
